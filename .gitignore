@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+services/__pycache__
+routes/__pycache__
+models/__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Flask / local config
+instance/
+database/
+config.py
+
+
+# VS Code
+.vscode/
+
+# Environment variables
+.env
+
+# Logs
+*.log
