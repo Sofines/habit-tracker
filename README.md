@@ -11,15 +11,11 @@ Inspired by early 2000s terminal interfaces and cyber aesthetics, this project c
 -  Create and delete habits
 -  Track streaks automatically
 -  Progress bars for each habit
--  AI-generated motivational tips
--  Retro terminal-style dashboard
--  Pixel-inspired UI (Press Start 2P, Orbitron)
 
 ---
 
 ## Preview
 <img src="preview.png" width="600">
----
 
 ## 🚀 Tech Stack
 
