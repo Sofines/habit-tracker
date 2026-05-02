@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Cyber Habit Tracker</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Share+Tech+Mono&family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -9,9 +8,34 @@
 
 <body>
 <div class="menu-bar">
-    <span>[FILE]</span>
-    <span>[HABITS]</span>
-    <span>[SYSTEM]</span>
+    <div class="menu-item">
+        [FILE]
+        <div class="dropdown">
+            <p>New Habit</p>
+            <p>Export Data</p>
+        </div>
+    </div>
+
+    <div class="menu-item">
+        [SYSTEM]
+        <div class="dropdown">
+            <p>Settings</p>
+            <p>Reset</p>
+        </div>
+    </div>
+
+    <div class="menu-item">
+        [HELP]
+        <div class="dropdown">
+            <p>About</p>
+            <p>Tips</p>
+        </div>
+    </div>
+</div>
+<div class="marquee-container">
+    <div class="marquee-text">
+        ★ Welcome to Habit Tracker! ★ Stay Productive! ★ Build Your Habits! ★ Track Your Progress! ★
+    </div>
 </div>
 <div id="boot">Initializing system...</div>
 <div id="loader">
@@ -19,7 +43,7 @@
 </div>
 <div class="container">
 
-    <h1>CYBER HABIT SYSTEM <span class="jp">習慣システム</span></h1>
+    <h1 class="glitch">CYBER HABIT SYSTEM <span class="jp">習慣システム</span></h1>
     <!-- 🟢 TERMINAL STATS -->
     <div class="terminal-box">
         <p>> System_status: online</p>
@@ -29,17 +53,28 @@
 
     <!-- 🟢 ADD HABIT FORM -->
     <div class="form-section">
-        <h2>> Add_habit</h2>
-        <form action="/habits" method="post">
-            <input type="text" name="name" placeholder="New habit..." required>
+    <h2>> Add_habit</h2>
 
-            <select name="frequency">
-                <option value="daily">daily</option>
-                <option value="weekly">weekly</option>
-            </select>
+    <form action="/habits" method="post">
 
-            <button type="submit">Add</button>
-        </form>
+        <!-- 🟢 Fake terminal input -->
+        <div class="terminal-input" onclick="focusInput()">
+            <span class="prompt">> </span>
+            <span id="fake-input"></span>
+            <span class="cursor">█</span>
+        </div>
+
+        <!-- 🟢 Real hidden input (IMPORTANT: keeps backend working) -->
+        <input type="text" name="name" id="real-input" required>
+
+        <!-- 🟢 Frequency -->
+        <select name="frequency">
+            <option value="daily">daily</option>
+            <option value="weekly">weekly</option>
+        </select>
+
+        <button type="submit">Add</button>
+    </form>
     </div>
 
     <!-- 🟢 HABITS GRID -->
@@ -66,21 +101,13 @@
             </form>
 
             <!-- 💡 AI TIP -->
-            <p>> {{ get_tip(habit) }}</p>
+            <p class="typing" data-text="{{ get_tip(habit) }}"></p>
 
         </div>
         {% endfor %}
     </div>
 
 </div>
-<script>
-window.addEventListener("load", () => {
-    const boot = document.getElementById("boot");
-    setTimeout(() => {
-        boot.style.display = "none";
-    }, 1200);
-});
-</script>
-
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

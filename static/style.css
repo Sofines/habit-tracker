@@ -136,6 +136,10 @@ select {
     color: #00ff9f;
     padding: 6px 25px 6px 6px;
     position: relative;
+    cursor: pointer;
+    font-family: 'Share Tech Mono', monospace;
+
+
 }
 
 .delete-btn {
@@ -227,4 +231,126 @@ select {
 @keyframes load {
     from { width: 0%; }
     to { width: 100%; }
+}
+
+.menu-bar {
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+    border-bottom: 1px solid #00ff9f;
+    background: black;
+    position: relative;
+}
+
+.menu-item {
+    position: relative;
+    cursor: pointer;
+    padding: 4px 8px;
+}
+
+/* Dropdown hidden by default */
+.dropdown {
+    display: none;
+    position: absolute;
+    background: black;
+    min-width: 140px;
+}
+
+.menu-item:hover .dropdown {
+    display: block;
+}
+
+.dropdown * {
+    display: block;
+    padding: 6px 10px;
+    color: #00ff9f;
+}
+
+.dropdown *:hover {
+    background: #00ff9f;
+    color: black;
+}
+
+.xp-box {
+    border: 1px solid #00ff9f;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.xp-bar {
+    width: 100%;
+    height: 10px;
+    background: #111;
+    margin: 5px 0;
+}
+
+.xp-fill {
+    height: 100%;
+    background: #00ff9f;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 8px #00ff9f;
+}
+
+.glitch {
+    position: relative;
+    animation: glitch 1.5s infinite;
+}
+
+@keyframes glitch {
+    0% { text-shadow: 2px 0 #00ff9f; }
+    20% { text-shadow: -2px 0 #ff00ff; }
+    40% { text-shadow: 2px 2px #00ffff; }
+    60% { text-shadow: -2px -2px #00ff9f; }
+    80% { text-shadow: 2px 0 #ff00ff; }
+    100% { text-shadow: 0 0 #00ff9f; }
+}
+
+.glitch-active {
+    filter: contrast(120%) brightness(120%);
+}
+
+.terminal-input {
+    background: black;
+    border: 1px solid #00ff9f;
+    padding: 10px;
+    font-family: 'Share Tech Mono', monospace;
+    margin-bottom: 10px;
+    cursor: text;
+}
+
+#real-input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.cursor {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+.marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    border-top: 1px solid #00ff9f;
+    border-bottom: 1px solid #00ff9f;
+    margin-bottom: 20px;
+    padding: 5px 0;
+}
+
+.marquee-text {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 15s linear infinite;
+    color: #00ffff;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+/* 🔥 animation */
+@keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
 }
