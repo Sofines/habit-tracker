@@ -9,7 +9,7 @@ models/__pycache__
 
 # Virtual environment
 venv/
-env/
+.env
 .venv/
 
 # Flask / local config

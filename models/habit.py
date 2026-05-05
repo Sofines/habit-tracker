@@ -6,7 +6,7 @@ class Habit(db.Model):
     name = db.Column(db.String(100), nullable=False)
     frequency = db.Column(db.String(50), nullable=False)
 
-    # 🔥 NEW FIELDS
+    #  NEW FIELDS
     last_completed = db.Column(db.DateTime, nullable=True)
     streak = db.Column(db.Integer, default=0)
 

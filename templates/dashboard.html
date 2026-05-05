@@ -44,30 +44,30 @@
 <div class="container">
 
     <h1 class="glitch">CYBER HABIT SYSTEM <span class="jp">習慣システム</span></h1>
-    <!-- 🟢 TERMINAL STATS -->
+    <!--  TERMINAL STATS -->
     <div class="terminal-box">
         <p>> System_status: online</p>
         <p>> Habits_tracked: {{ habits|length }}</p>
         <p>> Completed_today: {{ completed_today }}</p>
     </div>
 
-    <!-- 🟢 ADD HABIT FORM -->
+    <!--  ADD HABIT FORM -->
     <div class="form-section">
     <h2>> Add_habit</h2>
 
     <form action="/habits" method="post">
 
-        <!-- 🟢 Fake terminal input -->
+        <!--  Fake terminal input -->
         <div class="terminal-input" onclick="focusInput()">
             <span class="prompt">> </span>
             <span id="fake-input"></span>
             <span class="cursor">█</span>
         </div>
 
-        <!-- 🟢 Real hidden input (IMPORTANT: keeps backend working) -->
+        <!--  Real hidden input (IMPORTANT: keeps backend working) -->
         <input type="text" name="name" id="real-input" required>
 
-        <!-- 🟢 Frequency -->
+        <!--  Frequency -->
         <select name="frequency">
             <option value="daily">daily</option>
             <option value="weekly">weekly</option>
@@ -77,35 +77,33 @@
     </form>
     </div>
 
-    <!-- 🟢 HABITS GRID -->
-    <div class="grid">
-        {% for habit in habits %}
-        <div class="card">
+<div class="grid">
+    {% for item in habits %}
+    <div class="card">
 
-            <h3>{{ habit.name }}</h3>
-            <p>> streak: {{ habit.streak }}</p>
+        <h3>{{ item.habit.name }}</h3>
+        <p>> streak: {{ item.habit.streak }}</p>
 
-            <!-- 🟣 PROGRESS BAR -->
-            {% set progress = (habit.streak * 10) if habit.streak < 10 else 100 %}
-            <div class="progress-bar">
-                <div class="progress" style="width: {{ progress }}%"></div>
-            </div>
-
-            <!-- ✅ ACTIONS -->
-            <form action="/habits/{{ habit.id }}/complete" method="post">
-                <button type="submit">Complete</button>
-            </form>
-
-            <form action="/habits/{{ habit.id }}/delete" method="post">
-                <button type="submit" class="delete-btn">Delete</button>
-            </form>
-
-            <!-- 💡 AI TIP -->
-            <p class="typing" data-text="{{ get_tip(habit) }}"></p>
-
+        {% set progress = (item.habit.streak * 10) if item.habit.streak < 10 else 100 %}
+        <div class="progress-bar">
+            <div class="progress" style="width: {{ progress }}%"></div>
         </div>
-        {% endfor %}
+
+        <!-- ACTIONS -->
+        <form action="/habits/{{ item.habit.id }}/complete" method="post">
+            <button type="submit">Complete</button>
+        </form>
+
+        <form action="/habits/{{ item.habit.id }}/delete" method="post">
+            <button type="submit" class="delete-btn">Delete</button>
+        </form>
+
+        <!-- AI -->
+        <p class="typing" data-text="{{ item.ai }}"></p>
+
     </div>
+    {% endfor %}
+</div>
 
 </div>
 <script src="{{ url_for('static', filename='script.js') }}"></script>

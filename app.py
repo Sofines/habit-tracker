@@ -1,8 +1,13 @@
+from dotenv import load_dotenv
+load_dotenv()
+
+
 from flask import Flask, jsonify
 from database.db import db
 from routes.habit_routes import habit_bp
 from models.habit_log import HabitLog
 from datetime import datetime, timedelta
+
 
 app = Flask(__name__)
 
@@ -21,7 +26,7 @@ with app.app_context():
 @app.route("/")
 def home():
     return jsonify({
-        "message": "Cyber Habit Tracker API is running 🧠⚡"
+        "message": "Cyber Habit Tracker API is running"
     })
 
 
